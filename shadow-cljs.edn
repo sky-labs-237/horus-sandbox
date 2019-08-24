@@ -1,0 +1,40 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src" "test" "examples"]
+
+ :nrepl {:port 8777}
+
+ :dependencies
+ [[proto-repl "0.3.1"]
+  [cljs-ajax "0.7.3"]
+  [com.andrewmcveigh/cljs-time "0.5.2"]
+  [bidi "2.1.5"]
+  [kibu/pushy "0.3.8"]
+  [binaryage/devtools "0.9.10"]
+  [lilactown/hx "0.5.3"]
+  [appliedscience/js-interop "0.1.20"]
+  [reagent "0.8.1"]] :builds
+
+ {:react-router {:target :browser
+                 :output-dir "public/react-router/js"
+                 :asset-path "/js"
+                 :modules {:main {:init-fn router/init}}
+                 :devtools {:http-root    "public/react-router"
+                            :http-port    8600
+                            :preloads     [devtools.preload]}}
+  :cheffy {:target :browser
+           :output-dir "public/cheffy/js"
+           :asset-path "/js"
+              ;:modules {:main {:entries [cheffy]}}
+           :modules {:main {:init-fn cheffy/init}}
+              ;:compiler-options {:devcards true}
+           :devtools {:http-root    "public/cheffy"
+                      :http-port    8700
+                      :preloads     [devtools.preload]}}
+  :app {:target :browser
+        :output-dir "public/js"
+        :asset-path "/js"
+        :modules {:main {:entries [horus.core]}}
+        :devtools {:http-root    "public/"
+                   :http-port    8701
+                   :preloads     [devtools.preload]}}}}
